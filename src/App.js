@@ -1,5 +1,5 @@
 import './App.css'
-import { Formik, Form, useField } from 'formik'
+import { Formik, Field, Form, useField } from 'formik'
 import * as Yup from 'yup'
 import { TextField, Button } from '@material-ui/core'
 
@@ -111,11 +111,21 @@ const App = () => {
                                 type={'input'}
                                 placeholder={'First Name'}
                             />
+                            <Field
+                                type={'hidden'}
+                                name={'form-name'}
+                                value={'formik-demo'}
+                            />
                             <div style={{ marginTop: '1rem' }}>
                                 <MyTextField
                                     name={'lastName'}
                                     type={'input'}
                                     placeholder={'Last Name'}
+                                />
+                                <Field
+                                    type={'hidden'}
+                                    name={'form-name'}
+                                    value={'formik-demo'}
                                 />
                             </div>
                             <div style={{ marginTop: '1rem' }}>
@@ -127,6 +137,11 @@ const App = () => {
                                     label={'Message:'}
                                     placeholder={'Type message here...'}
                                     variant={'outlined'}
+                                />
+                                <Field
+                                    type={'hidden'}
+                                    name={'form-name'}
+                                    value={'formik-demo'}
                                 />
                             </div>
                             <div>
