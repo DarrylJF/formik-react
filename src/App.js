@@ -45,27 +45,27 @@ const App = () => {
             .join('&')
     }
 
-    const handleSubmit = (values, actions) => {
-        // event.preventDefault()
-        console.log('VALUES', values)
-        console.log('ACTIONS', actions)
-        fetch('/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: encode({
-                'form-name': 'formik-demo',
-                ...values,
-            }),
-        })
-            .then(() => {
-                alert('Form successfully submitted')
-                actions.resetForm()
-            })
-            .catch(err => {
-                console.log(err)
-            })
-            .finally(() => actions.setSubmitting(false))
-    }
+    // const handleSubmit = (values, actions) => {
+    //     // event.preventDefault()
+    //     console.log('VALUES', values)
+    //     console.log('ACTIONS', actions)
+    //     fetch('/', {
+    //         method: 'POST',
+    //         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    //         body: encode({
+    //             'form-name': 'formik-demo',
+    //             ...values,
+    //         }),
+    //     })
+    //         .then(() => {
+    //             alert('Form successfully submitted')
+    //             actions.resetForm()
+    //         })
+    //         .catch(err => {
+    //             console.log(err)
+    //         })
+    //         .finally(() => actions.setSubmitting(false))
+    // }
 
     return (
         <div className="App">
@@ -80,7 +80,26 @@ const App = () => {
                 //     setSubmitting(false)
                 //     resetForm(true)
                 // }}
-                onSubmit={handleSubmit}
+                onSubmit={(values, actions) => {
+                    fetch('/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: encode({
+                            'form-name': 'formik-demo',
+                            ...values,
+                        }),
+                    })
+                        .then(() => {
+                            alert('Form successfully submitted')
+                            actions.resetForm()
+                        })
+                        .catch(err => {
+                            console.log(err)
+                        })
+                        .finally(() => actions.setSubmitting(false))
+                }}
             >
                 {props => {
                     console.log('FORMIK PROPS', props)
